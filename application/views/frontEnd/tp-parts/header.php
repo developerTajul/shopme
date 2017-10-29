@@ -44,6 +44,11 @@
 			<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/frontEnd/css/oldie.css">
 		<![endif]-->
 	</head>
+	<?php 
+$contents = $this->cart->contents();
+
+?>
+
 	<body class="front_page">
 
 		
@@ -356,30 +361,33 @@
 
 											<div class="shopping_cart_wrap">
 
-												<button id="open_shopping_cart" class="open_button" data-amount="3">
+												<button id="open_shopping_cart" class="open_button" data-amount="<?php echo $this->cart->total_items(); ?>">
 													<b class="title">My Cart</b>
-													<b class="total_price">$999.00</b>
+													<b class="total_price"><?php echo $this->cart->total(); ?></b>
 												</button>
 
 												<!-- - - - - - - - - - - - - - Products list - - - - - - - - - - - - - - - - -->
 
 												<div class="shopping_cart dropdown">
+<?php foreach ($contents as $value) : ?>
+
 
 													<div class="animated_item">
 
-														<p class="title">Recently added item(s)</p>
+												
 
 														<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
 
 														<div class="clearfix sc_product">
 
-															<a href="#" class="product_thumb"><img src="<?php echo base_url(); ?>assets/frontEnd/images/sc_img_1.jpg" alt=""></a>
+															<a href="#" class="product_thumb"><img src="<?php echo base_url().$value['options']['image']; ?>" alt="" width="60px" height="60px"></a>
 
-															<a href="#" class="product_name">Aenean Auctor Wisi Et Urna Ipsum...</a>
+															<a href="#" class="product_name"><?php echo $value['name']; ?></a>
 
-															<p>1 x $499.00</p>
+															<p><?php echo $value['qty']; ?> x $<?php echo $value['price']; ?> = <?php echo $value['subtotal']; ?></p>
 
-															<button class="close"></button>
+															<!-- <button class="close"></button> -->
+															<a href="<?php echo base_url(); ?>Cart/delete_from_cart/<?php echo $value['rowid']; ?>">X</a>
 
 														</div><!--/ .clearfix.sc_product-->
 														
@@ -387,63 +395,9 @@
 
 													</div><!--/ .animated_item-->
 
-													<div class="animated_item">
+									<?php endforeach; ?>
 
-														<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-														<div class="clearfix sc_product">
-
-															<a href="#" class="product_thumb"><img src="<?php echo base_url(); ?>assets/frontEnd/images/sc_img_2.jpg" alt=""></a>
-
-															<a href="#" class="product_name">Lorem Ipsum Dolor Sit Amet...</a>
-
-															<p>1 x $499.00</p>
-
-															<button class="close"></button>
-
-														</div><!--/ .clearfix.sc_product-->
-														
-														<!-- - - - - - - - - - - - - - End of product - - - - - - - - - - - - - - - - -->
-
-													</div><!--/ .animated_item-->
-
-													<div class="animated_item">
-
-														<!-- - - - - - - - - - - - - - Product - - - - - - - - - - - - - - - - -->
-
-														<div class="clearfix sc_product">
-
-															<a href="#" class="product_thumb"><img src="<?php echo base_url(); ?>assets/frontEnd/images/sc_img_3.jpg" alt=""></a>
-
-															<a href="#" class="product_name">Nemo Enim Ipsam <br>Voluptatem 30 ea</a>
-
-															<p>1 x $499.00</p>
-
-															<button class="close"></button>
-
-														</div><!--/ .clearfix.sc_product-->
-														
-														<!-- - - - - - - - - - - - - - End of product - - - - - - - - - - - - - - - - -->
-
-													</div><!--/ .animated_item-->
-
-													<div class="animated_item">
-
-														<!-- - - - - - - - - - - - - - Total info - - - - - - - - - - - - - - - - -->
-
-														<ul class="total_info">
-
-															<li><span class="price">Tax:</span> $0.00</li>
-
-															<li><span class="price">Discount:</span> $37.00</li>
-
-															<li class="total"><b><span class="price">Total:</span> $999.00</b></li>
-
-														</ul>
-														
-														<!-- - - - - - - - - - - - - - End of total info - - - - - - - - - - - - - - - - -->
-
-													</div><!--/ .animated_item-->
+													
 
 													<div class="animated_item">
 

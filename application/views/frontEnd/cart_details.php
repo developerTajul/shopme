@@ -103,13 +103,15 @@ echo "</pre>";
 
 							<div class="qty min clearfix">
 
-
-								<button class="theme_button" data-direction="minus">&#45;</button>
+			<!-- <button class="theme_button" data-direction="minus">&#45;</button> -->
 			<input class="cart_quantity_input" type="number" name="quantity" value="<?php echo $value['qty']; ?>" autocomplete="off" size="1">					
-								<!-- <input type="text" name="" value="1"> -->
-								<button class="theme_button" data-direction="plus">&#43;</button>
+			<!-- <input type="text" name="" value="1"> -->
+<!-- <button type="submit" name="update_cart"  class="theme_button" data-direction="plus">&#43;</button> -->
+
 			<input type="hidden" name="rowid" value="<?php echo $value['rowid']; ?>" >
-			<input type="submit" name="update_cart" value="Update Cart">	
+
+
+			<input type="submit" name="update_cart" value="Update Now">	
 							
 							</div><!--/ .qty.min.clearfix-->
 
@@ -159,7 +161,7 @@ echo "</pre>";
 
 			<div class="right_side">
 
-				<a href="#" class="button_grey middle_btn">Clear Shopping Cart</a>
+				<a href="<?php echo $this->cart->destroy(); ?>" class="button_grey middle_btn">Clear Shopping Cart</a>
 
 			</div>
 
